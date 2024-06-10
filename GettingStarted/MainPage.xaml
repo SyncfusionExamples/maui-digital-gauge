@@ -5,10 +5,7 @@
              x:Class="GettingStartedSample.MainPage">
 
     <Grid>
-        <gauge:SfDigitalGauge Text="syncfusion" 
-          HeightRequest="120"  WidthRequest="500" 
-          
-          />
+        <gauge:SfDigitalGauge Text="syncfusion" />
     </Grid>
 
 

@@ -60,10 +60,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\digitalgauge\maui-gauges\maui\src\gauges\Syncfusion.Maui.Gauges.csproj" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="*" />
 	</ItemGroup>
 
 </Project>
