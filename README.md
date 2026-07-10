@@ -104,4 +104,4 @@ public partial class MainPage : ContentPage
 }
 ```
 
-![Digital Gauge in .NET MAUI Digital Gauge](Images\getting-started.png)
+![Digital Gauge in .NET MAUI Digital Gauge](MAUI-digitalGauge.png)
