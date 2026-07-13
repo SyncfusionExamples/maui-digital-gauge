@@ -1,48 +1,107 @@
-#  Maui Digital Gauge.
+# Getting Started with .NET MAUI Digital Gauge
 
-Create a sample in .net maui digital gauge.
+## Creating an application using the .NET MAUI Digital Gauge
 
-## Supported platforms
+The [.NET MAUI Digital Gauge](https://www.syncfusion.com/maui-controls/maui-digital-gauge?utm_source=github&utm_medium=listing&utm_campaign=maui-digital-gauge-github-samples) is a data visualization control used to display text and numeric values as digital characters with customizable segment styles. This guide will help you integrate the Digital Gauge control into your .NET MAUI application.
 
-.NET Multi-platform App UI (.NET MAUI) apps can be written for the following platforms:
+### Step 1: Create a new .NET MAUI application in Visual Studio
 
-* Android 5.0 (API 21) or higher.
-* iOS 11 or higher, using the latest release of Xcode.
-* macOS 10.15 or higher, using Mac Catalyst.
-* Windows 11 and Windows 10 version 1809 or higher, using [Windows UI Library (WinUI) 3](https://learn.microsoft.com/en-us/windows/apps/winui/winui3/).
+1. Go to **File > New > Project** and choose the **.NET MAUI App** template.
+2. Name the project and choose a location. Click **Next**.
+3. Select the .NET framework version and click **Create**.
 
-## Requirements to run the sample
+### Step 2: Install the Syncfusion .NET MAUI Gauges NuGet package
 
-* [Visual Studio 2022 Preview](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview) version 17.6.0 or higher (.NET MAUI version 6.0.552) with .NET 7.0 and .NET 8.0
-* [Microsoft Visual Studio 2022](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes) version 17.5.1 with (.NET MAUI version 6.0.552) with .NET 7.0 and .NET 8.0
-* [Visual Studio 2022 for Mac](https://visualstudio.microsoft.com/vs/mac) version 17.5 (.NET MAUI version 6.0.552) with .NET 7.0 and .NET 8.0
+1. In **Solution Explorer**, right-click the project and choose **Manage NuGet Packages**.
+2. Search for Syncfusion.Maui.Gauges and install the latest version.
+3. Ensure the necessary dependencies are installed correctly, and the project is restored.
 
-Refer to the following link for more details: [System Requirements](https://help.syncfusion.com/maui/system-requirements)
+### Step 3: Register the Syncfusion handler
 
-## How to run the sample
+Syncfusion.Maui.Core NuGet is a dependent package for all Syncfusion controls of .NET MAUI. In the MauiProgram.cs file, register the handler for Syncfusion core.
 
-1. Clone the sample and open it in Visual Studio 2022 preview.
-   
-   *Note: If you download the sample using the "Download ZIP" option, right-click it, select Properties, and then select Unblock.*
 
-2. Register your license key in the App.cs file as demonstrated in the following code.
 
-		public App()
-		{
-			//Register Syncfusion license
-			Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("YOUR LICENSE KEY");
-		
-			InitializeComponent();
-		
-			MainPage = new MainPage();
-		}
-		
-	Refer to this [link](https://help.syncfusion.com/maui/licensing/overview) for more details.
-	
-3. Clean and build the application.
+**[C#]**
+```
+using Microsoft.Maui;
+using Microsoft.Maui.Hosting;
+using Syncfusion.Maui.Core.Hosting;
 
-4. Run the application.
+namespace DigitalGaugeGettingStarted
+{
+    public static class MauiProgram
+    {
+        public static MauiApp CreateMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .ConfigureSyncfusionCore()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                });
 
-## License
+            return builder.Build();
+        }
+    }
+}
+```
 
-Syncfusion has no liability for any damage or consequence that may arise from using or viewing the samples. The samples are for demonstrative purposes. If you choose to use or access the samples, you agree to not hold Syncfusion liable, in any form, for any damage related to use, for accessing, or viewing the samples. By accessing, viewing, or seeing the samples, you acknowledge and agree Syncfusion’s samples will not allow you seek injunctive relief in any form for any claim related to the sample. If you do not agree to this, do not view, access, utilize, or otherwise do anything with Syncfusion’s samples.
+### Step 4: Add the Digital Gauge namespace
+
+Import the Gauge namespace to your XAML or C# code.
+
+**[XAML]**
+```
+xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+```
+
+**[C#]**
+```
+using Syncfusion.Maui.Gauges;
+```
+
+### Step 5: Initialize the Digital Gauge
+
+Initialize the [SfDigitalGauge]() and set a `Text` value to display in the digital gauge.
+
+**[XAML]**
+```
+<ContentPage   
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+    x:Class="DigitalGaugeGettingStarted.MainPage">
+
+    <Grid>
+        <gauge:SfDigitalGauge Text="06:14:56 PM" 
+                              CharacterType="FourteenSegment" />
+    </Grid>
+</ContentPage>
+```
+
+**[C#]**
+```
+using Syncfusion.Maui.Gauges;
+. . .
+
+public partial class MainPage : ContentPage
+{
+    public MainPage()
+    {
+        this.InitializeComponent();
+        
+        SfDigitalGauge digitalGauge = new SfDigitalGauge()
+        {
+            Text = "06:14:56 PM",
+            CharacterType = CharacterType.FourteenSegment
+        };
+
+        this.Content = digitalGauge;
+    }
+}
+```
+
+![Digital Gauge in .NET MAUI Digital Gauge](MAUI-digitalGauge.png)
